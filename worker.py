@@ -25,17 +25,16 @@ def hello():
 
 @app.route("/test")
 def test():
-    return(access_secret_version("compute-api-key"))
+    return(access_secret_version("api"))
 
 @app.route("/add",methods=['GET','POST'])
 def add():
   if request.method=='GET':
       return render_template('adding_vm_form.html')
   else:
-    token=access_secret_version("compute-api-key")
+    token=access_secret_version("api")
     ret = addWorker(token,request.form['num'])
     return ret
-
 
 def addWorker(token, num):
     with open('payload.json') as p:
