@@ -29,7 +29,7 @@
   "labels": {
     "goog-ec-src": "vm_add-rest"
   },
-  "machineType": "projects/lab5-407311/zones/europe-west2-c/machineTypes/e1-medium",
+  "machineType": "zones/europe-west2-c/machineTypes/e2-medium",
   "metadata": {
     "items": [
       {
