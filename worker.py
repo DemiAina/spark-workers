@@ -6,28 +6,32 @@ import os
 import json
 app = Flask(__name__)
 
-def get_api_key() -> str:
-    secret = os.environ.get("COMPUTE_API_KEY")
-    if secret:
-        return secret
-    else:
-        #local testing
-        return "No more local testing"     
+
+def access_secret_version(secret_id, version_id="latest"):
+
+    client = secretmanager.SecretManagerServiceClient()
+
+    name = f"projects/397867008227/secrets/{secret_id}/versions/{version_id}"
+
+    response = client.access_secret_version(name=name)
+
+    return response.payload.data.decode('UTF-8')
+
+    
 @app.route("/")
 def hello():
     return "Add workers to the Spark cluster with a POST request to add"
 
 @app.route("/test")
 def test():
-    #return "Test" # testing 
-    return(get_api_key())
+    return(access_secret_version("compute-api-key"))
 
 @app.route("/add",methods=['GET','POST'])
 def add():
   if request.method=='GET':
       return render_template('adding_vm_form.html')
   else:
-    token=get_api_key()
+    token=access_secret_version("compute-api-key")
     ret = addWorker(token,request.form['num'])
     return ret
 
