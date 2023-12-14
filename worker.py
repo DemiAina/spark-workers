@@ -11,9 +11,7 @@ def get_api_key() -> str:
         return secret
     else:
         #local testing
-        with open('.key') as f:
-            return f.read()
-      
+        return "ya29.a0AfB_byD3pUTsIhZG0trte5ENCQcPPJBMntmTNyFGElCkiNWI14m4TIQqgmveqi5WMhrVZXo3UwHjsf-pB5vWrquJycmm1D-E3NGr_pFmmAepfLvQlUlv3TBPe3Dc-J5JkKlz0VRh_D7KJXvGTo6YwCwLBTiGggihjICdtnS3LVGiK03eNNwWag7ZD9Eq1dKtfLMnXelStbGcBzC29st-5S78NdeSMj5ZCgiuP4_Y_tHJSv7qTxA6s4pvGYZjzOV2Nv3U9hNXyVzBm7HOp3NCAFCh_TyFWtByr_AaYPYGpT8ymnEPnFR-10T9LtHCX8sC9qEUR0cm4fU3fjc-LLSwCE5lJ066LLpqaSN95F8D0RY1J4aQM2FrNq59kGp760NIv_eNRJHuLtHnaqYntkUJPV0vqfeV5qG3BwaCgYKAfYSARMSFQHGX2MiW-Wgr15eo-pqwAGra-PoZg0425"     
 @app.route("/")
 def hello():
     return "Add workers to the Spark cluster with a POST request to add"
@@ -38,7 +36,7 @@ def addWorker(token, num):
       tdata=json.load(p)
     tdata['name']='sparkplug-master-'+str(num)
     data=json.dumps(tdata)
-    url='https://www.googleapis.com/compute/v1/projects/lab5-407311/zones/europe-west2/instances'
+    url='https://www.googleapis.com/compute/v1/projects/lab5-407311/zones/europe-west1-b/instances'
     headers={"Authorization": "Bearer "+token}
     resp=requests.post(url,headers=headers, data=data)
     if resp.status_code==200:     
