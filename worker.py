@@ -9,13 +9,9 @@ app = Flask(__name__)
 
 
 def access_secret_version(secret_id, version_id="latest"):
-
     client = secretmanager.SecretManagerServiceClient()
-
     name = f"projects/397867008227/secrets/{secret_id}/versions/{version_id}"
-
     response = client.access_secret_version(name=name)
-
     return response.payload.data.decode('UTF-8')
 
     
