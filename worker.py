@@ -1,5 +1,6 @@
 from flask import Flask
 from flask import request
+from flask import render_template
 import requests
 import os
 import json
@@ -11,7 +12,7 @@ def get_api_key() -> str:
         return secret
     else:
         #local testing
-        return "ya29.a0AfB_byD3pUTsIhZG0trte5ENCQcPPJBMntmTNyFGElCkiNWI14m4TIQqgmveqi5WMhrVZXo3UwHjsf-pB5vWrquJycmm1D-E3NGr_pFmmAepfLvQlUlv3TBPe3Dc-J5JkKlz0VRh_D7KJXvGTo6YwCwLBTiGggihjICdtnS3LVGiK03eNNwWag7ZD9Eq1dKtfLMnXelStbGcBzC29st-5S78NdeSMj5ZCgiuP4_Y_tHJSv7qTxA6s4pvGYZjzOV2Nv3U9hNXyVzBm7HOp3NCAFCh_TyFWtByr_AaYPYGpT8ymnEPnFR-10T9LtHCX8sC9qEUR0cm4fU3fjc-LLSwCE5lJ066LLpqaSN95F8D0RY1J4aQM2FrNq59kGp760NIv_eNRJHuLtHnaqYntkUJPV0vqfeV5qG3BwaCgYKAfYSARMSFQHGX2MiW-Wgr15eo-pqwAGra-PoZg0425"     
+        return "No more local testing"     
 @app.route("/")
 def hello():
     return "Add workers to the Spark cluster with a POST request to add"
@@ -24,7 +25,7 @@ def test():
 @app.route("/add",methods=['GET','POST'])
 def add():
   if request.method=='GET':
-    return "Use post to add" # replace with form template
+      return render_template('adding_vm_form.html')
   else:
     token=get_api_key()
     ret = addWorker(token,request.form['num'])
