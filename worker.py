@@ -35,7 +35,7 @@ def add():
 def addWorker(token, num):
     with open('payload.json') as p:
       tdata=json.load(p)
-    tdata['name']='sparkplug-master-'+str(num)
+    tdata['name']=f"sparkplug-master-{num}"
     data=json.dumps(tdata)
     url='https://www.googleapis.com/compute/v1/projects/lab5-407311/zones/europe-west1-b/instances'
     headers={"Authorization": "Bearer "+token}
