@@ -37,7 +37,7 @@ def addWorker(token, num):
       tdata=json.load(p)
     tdata['name']=f"sparkplug-master-{num}"
     data=json.dumps(tdata)
-    url='https://www.googleapis.com/compute/v1/projects/lab5-407311/zones/europe-west1-b/instances'
+    url='https://www.googleapis.com/compute/v1/projects/lab5-407311/zones/europe-west2-c/instances'
     headers={"Authorization": "Bearer "+token}
     resp=requests.post(url,headers=headers, data=data)
     if resp.status_code==200:     
